@@ -1,0 +1,16 @@
+<template name="header">
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li><a class="navbar-brand" href="/">BearBnB</a></li>
+            <li class=""><a href="/profile">Profile</a></li>
+            <li class=""><a href="/my-postings">My Postings</a></li>
+
+        </ul>
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {{> loginButtons}}
+            </ul>
+        </div>
+    </nav>
+</template>

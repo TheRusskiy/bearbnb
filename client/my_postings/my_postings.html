@@ -1,0 +1,20 @@
+<template name="myPostings">
+    <h1>My Postings</h1>
+    <a href="/postings/new" class="btn btn-primary">New Posting</a>
+    {{#each posting in myPostings }}
+        {{>myPosting posting}}
+    {{else}}
+        <div>
+            No postings
+        </div>
+    {{/each}}
+</template>
+
+<template name="myPosting">
+    <div class="posting-preview">
+        <a href class="posting-preview-remove">X</a>
+        Title: {{title}}
+        <br>
+        Description: {{description}}
+    </div>
+</template>
