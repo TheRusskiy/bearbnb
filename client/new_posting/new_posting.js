@@ -10,7 +10,6 @@ Template.newPosting.events({
           if (error) {
               sAlert.error(error.reason)
           } else {
-              console.log(result)
               FlowRouter.go('myPostings')
           }
       })

@@ -15,8 +15,6 @@ Template.myPostings.events({
         Meteor.call('removePosting', {id: this._id}, (error, result)=>{
             if (error) {
                 sAlert.error(error.reason)
-            } else {
-                console.log(result)
             }
         })
     }
