@@ -12,3 +12,9 @@
     padding: 3px;
     border-radius: 10px;
 }
+.posting-preview .posting-preview-edit {
+    float: right;
+    background-color: white;
+    padding: 3px;
+    border-radius: 10px;
+}

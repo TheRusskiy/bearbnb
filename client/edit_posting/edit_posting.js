@@ -1,29 +1,32 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-Template.newPosting.events({
+Template.editPosting.events({
   'submit form'(event, instance) {
       event.preventDefault()
       let title = event.target.elements.title.value
       let description = event.target.elements.description.value
-      var files = event.target.elements.image.files;
-      Meteor.call('createPosting', {title, description}, (error, postingId)=>{
+      var files = event.target.elements.image.files
+      let posting = this
+      Meteor.call('updatePosting', posting._id, {title, description}, (error, postingId)=>{
           if (error) {
               sAlert.error(error.reason)
           } else {
-              let uploadedFiles = []
+              let uploadedFiles = posting.images
+              let lengthBefore = posting.images.length
+              console.log(files);
               if (files.length === 0) {
                   FlowRouter.go('myPostings')
               }
               for (var i = 0, ln = files.length; i < ln; i++) {
-                  var file=new FS.File(files[i])
-                  file.userId=Meteor.userId();
+                  var file = new FS.File(files[i])
+                  file.userId = Meteor.userId();
                   Images.insert(file, function (err, fileObj) {
                       if (err) {
                           sAlert.error(err.reason)
                       } else {
                           uploadedFiles.push(fileObj._id)
-                          if (uploadedFiles.length == files.length) {
-                              Meteor.call('updatePosting', postingId, {images: uploadedFiles}, (error, result)=>{
+                          if (uploadedFiles.length === files.length + lengthBefore) {
+                              Meteor.call('updatePosting', posting._id, {images: uploadedFiles}, (error, result)=>{
                                   if (error) {
                                       sAlert.error(error.reason)
                                   } else {
@@ -38,3 +41,22 @@ Template.newPosting.events({
       })
   }
 });
+
+Template.editPosting.onCreated(function(){
+    this.subscribe('myPostings')
+    this.subscribe('images')
+});
+
+Template.editPosting.helpers({
+    posting: function (){
+        return Postings.findOne({_id: FlowRouter.current().params.posting_id})
+    },
+    imageList: function (){
+        let posting = Postings.findOne({_id: FlowRouter.current().params.posting_id})
+        if (posting.images) {
+            return Images.find({_id: {$in: posting.images}})
+        } else {
+            return [];
+        }
+    }
+})
