@@ -24,6 +24,9 @@ Images.allow({
     'update': function (userId, doc) {
         return doc.userId === userId
     },
+    'remove': function (userId, doc) {
+        return doc.userId === userId
+    },
     'download' :function(){
         return true;
     }

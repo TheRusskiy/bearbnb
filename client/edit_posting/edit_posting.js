@@ -39,7 +39,15 @@ Template.editPosting.events({
               }
           }
       })
-  }
+  },
+   'click a.edit-posting-image-remove'(event, instance){
+       event.preventDefault()
+       Meteor.call('removeImage', {id: this._id, postingId: FlowRouter.current().params.posting_id}, (error, result)=>{
+           if (error) {
+               sAlert.error(error.reason)
+           }
+       })
+   }
 });
 
 Template.editPosting.onCreated(function(){
