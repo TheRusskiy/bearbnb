@@ -15,7 +15,7 @@ Template.editPosting.events({
               let lengthBefore = posting.images.length
               console.log(files);
               if (files.length === 0) {
-                  FlowRouter.go('myPostings')
+                  FlowRouter.go('showPosting', {posting_id: posting._id})
               }
               for (var i = 0, ln = files.length; i < ln; i++) {
                   var file = new FS.File(files[i])
@@ -30,7 +30,7 @@ Template.editPosting.events({
                                   if (error) {
                                       sAlert.error(error.reason)
                                   } else {
-                                      FlowRouter.go('myPostings')
+                                      FlowRouter.go('showPosting', {posting_id: posting._id})
                                   }
                               })
                           }
@@ -51,9 +51,24 @@ Template.editPosting.events({
 });
 
 Template.editPosting.onCreated(function(){
-    this.subscribe('myPostings')
+    let subscription = this.subscribe('myPostings')
     this.subscribe('images')
+    let instance = this
+    instance.autorun(()=> {
+        if (subscription.ready()) {
+            let posting = Postings.findOne({_id: FlowRouter.current().params.posting_id})
+            if (!posting || posting.userId !== Meteor.userId()) {
+                return FlowRouter.redirect('/')
+            }
+        }
+    })
 });
+
+// Template.subscriptionsReady(function () {
+//     if (Postings.findOne({_id: FlowRouter.current().params.posting_id}).userId !== Meteor.userId()) {
+//         return FlowRouter.redirect('main')
+//     }
+// })
 
 Template.editPosting.helpers({
     posting: function (){

@@ -12,7 +12,7 @@ Template.newPosting.events({
           } else {
               let uploadedFiles = []
               if (files.length === 0) {
-                  FlowRouter.go('myPostings')
+                  FlowRouter.go('showPosting', {posting_id: postingId})
               }
               for (var i = 0, ln = files.length; i < ln; i++) {
                   var file=new FS.File(files[i])
@@ -27,7 +27,7 @@ Template.newPosting.events({
                                   if (error) {
                                       sAlert.error(error.reason)
                                   } else {
-                                      FlowRouter.go('myPostings')
+                                      FlowRouter.go('showPosting', {posting_id: postingId})
                                   }
                               })
                           }

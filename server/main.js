@@ -8,6 +8,11 @@ Meteor.publish("myPostings", function () {
         return Postings.find({userId: this.userId}, {fields: {title: 1, description: 1, userId: 1, images: 1}});
     }
 });
+Meteor.publish("postings", function () {
+    if (this.userId) {
+        return Postings.find({}, {fields: {title: 1, description: 1, userId: 1, images: 1}});
+    }
+});
 Meteor.publish("me", function () {
     if (this.userId) {
         return Meteor.users.find(this.userId);

@@ -14,9 +14,9 @@
     <div class="posting-preview">
         <a href class="posting-preview-remove">X</a>
         <a href="/postings/{{_id}}/edit" class="posting-preview-edit">Edit</a>
-        Title: {{title}}
+        <h4><a href="/postings/{{_id}}">{{title}}</a></h4>
         <br>
-        Description: {{description}}
+        <p>{{description}}</p>
         {{#each imageList}}
             <div>
                 <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="thumbnail" /></a>
