@@ -1,24 +1,32 @@
 <template name="allPostings">
-    <h1>All Postings</h1>
-    {{#if loggedIn }}
-        <a href="/postings/new" class="btn btn-primary">New Posting</a>
-    {{/if}}
-    {{#each posting in allPostings }}
-        {{>postingPreview posting}}
-    {{else}}
-        <div>
-            No postings
+    <div class="main-logo"><img alt="Logo" src="/bearbnb.jpg"></div>
+    <div class="jumbotron">
+        <h1>Find yourself a Den</h1>
+        <div class="row">
+            {{#each posting in allPostings }}
+                <div class="col-md-6">
+                    {{>postingPreview posting}}
+                </div>
+            {{else}}
+                <div>
+                    No dens :-(
+                </div>
+            {{/each}}
+            {{#if loggedIn }}
+                <div class="col-md-12 create-a-posting">
+                    <a href="/postings/new" class="btn btn-success">I have a den too!</a>
+                </div>
+            {{/if}}
         </div>
-    {{/each}}
+    </div>
 </template>
 
 <template name="postingPreview">
     <div class="posting-preview">
-        <h4><a href="/postings/{{_id}}">{{title}}</a></h4>
-        <br>
+        <h3><a href="/postings/{{_id}}">{{title}}</a></h3>
         <p>{{description}}</p>
         {{#each imageList}}
-            <div>
+            <div class="image-preview">
                 <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="thumbnail" /></a>
             </div>
         {{/each}}

@@ -1,7 +1,7 @@
 <template name="editPosting">
     {{#if Template.subscriptionsReady}}
     {{#with posting }}
-    <h1>Edit Posting</h1>
+    <h1>Edit Your Den</h1>
     <form>
         <div class="form-group">
             <label>Title
@@ -14,8 +14,8 @@
             </label>
         </div>
         {{#each imageList}}
-            <div>
-                <a href class="edit-posting-image-remove">X</a>
+            <div class="image-preview-edit">
+                <a href class="edit-posting-image-remove"><i class="glyphicon glyphicon-remove"></i></a>
                 <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="thumbnail" /></a>
             </div>
         {{/each}}

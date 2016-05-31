@@ -1,7 +1,12 @@
 import { Template } from 'meteor/templating';
 
-Template.profile.onCreated(function(){
+Template.profile.onCreated(function(instance){
     this.subscribe('me')
+    this.autorun(()=> {
+        if (!Meteor.userId()) {
+            return FlowRouter.redirect('/')
+        }
+    })
 });
 
 Template.profile.helpers({

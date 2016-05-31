@@ -1,8 +1,9 @@
 <template name="showPosting">
     {{#if Template.subscriptionsReady}}
     {{#with posting }}
-    <h1>{{posting.title}}</h1>
-    {{#if myPosting }}<a href="/postings/{{posting._id}}/edit" class="posting-preview-edit">Edit</a>{{/if}}
+    <h1>{{posting.title}} {{#if myPosting }}
+        <a href="/postings/{{posting._id}}/edit" class="posting-preview-edit"><i class="glyphicon glyphicon-edit"></i></a>
+    {{/if}}</h1>
     <p>{{posting.description}}</p>
         {{#each imageList}}
             <div>

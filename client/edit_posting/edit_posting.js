@@ -64,12 +64,6 @@ Template.editPosting.onCreated(function(){
     })
 });
 
-// Template.subscriptionsReady(function () {
-//     if (Postings.findOne({_id: FlowRouter.current().params.posting_id}).userId !== Meteor.userId()) {
-//         return FlowRouter.redirect('main')
-//     }
-// })
-
 Template.editPosting.helpers({
     posting: function (){
         return Postings.findOne({_id: FlowRouter.current().params.posting_id})

@@ -1,24 +1,28 @@
 <template name="myPostings">
-    <h1>My Postings</h1>
-    <a href="/postings/new" class="btn btn-primary">New Posting</a>
+    <h1>My Dens <a href="/postings/new" class="btn btn-primary">New Den</a></h1>
     {{#each posting in myPostings }}
-        {{>myPosting posting}}
+        <div class="row">
+            <div class="col-md-12">
+                {{>myPosting posting}}
+            </div>
+        </div>
     {{else}}
-        <div>
-            No postings
+        <div class="row">
+            <div class="col-md-12">
+                You don't have any dens yet!
+            </div>
         </div>
     {{/each}}
 </template>
 
 <template name="myPosting">
     <div class="posting-preview">
-        <a href class="posting-preview-remove">X</a>
-        <a href="/postings/{{_id}}/edit" class="posting-preview-edit">Edit</a>
-        <h4><a href="/postings/{{_id}}">{{title}}</a></h4>
-        <br>
+        <a href class="posting-preview-remove"><i class="glyphicon glyphicon-remove"></i></a>
+        <a href="/postings/{{_id}}/edit" class="posting-preview-edit"><i class="glyphicon glyphicon-edit"></i></a>
+        <h3><a href="/postings/{{_id}}">{{title}}</a></h3>
         <p>{{description}}</p>
         {{#each imageList}}
-            <div>
+            <div class="image-preview">
                 <a href="{{this.url}}" target="_blank"><img src="{{this.url}}" alt="" class="thumbnail" /></a>
             </div>
         {{/each}}

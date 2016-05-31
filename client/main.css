@@ -2,19 +2,69 @@
 .posting-preview {
     margin: 10px;
     padding: 10px;
-    background-color: gray;
-    border-radius: 2px;
+    background-color: #e3e3e3;
+    border-radius: 10px;
 }
 .posting-preview .posting-preview-remove {
     float: right;
     color: red;
-    background-color: white;
     padding: 3px;
     border-radius: 10px;
 }
+.posting-preview .posting-preview-remove:hover {
+    color: #9b0000;
+}
+h1 .posting-preview-edit {
+    font-size: 25px;
+}
 .posting-preview .posting-preview-edit {
     float: right;
-    background-color: white;
     padding: 3px;
+    color: black;
     border-radius: 10px;
+}
+.posting-preview .posting-preview-edit:hover {
+    color: #606060;
+}
+.main-logo {
+    text-align: center;
+}
+.main-logo img {
+    border-radius: 10px;
+}
+.jumbotron {
+    padding-top: 10px;
+    text-align: center;
+}
+.image-preview {
+    display: inline-block;
+    padding: 5px;
+}
+.image-preview img {
+    height: 110px;
+}
+.create-a-posting {
+    margin-top: 20px;
+}
+
+.create-a-posting a {
+    padding: 10px 20px;
+    font-size: 30px !important;
+}
+
+.image-preview-edit {
+    position: relative;
+    width: 140px;
+}
+.image-preview-edit img {
+    width: 140px;
+}
+.image-preview-edit .edit-posting-image-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: red;
+}
+.image-preview-edit .edit-posting-image-remove:hover {
+    color: #9b0000;
 }

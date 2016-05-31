@@ -9,9 +9,7 @@ Meteor.publish("myPostings", function () {
     }
 });
 Meteor.publish("postings", function () {
-    if (this.userId) {
-        return Postings.find({}, {fields: {title: 1, description: 1, userId: 1, images: 1}});
-    }
+    return Postings.find({}, {fields: {title: 1, description: 1, userId: 1, images: 1}});
 });
 Meteor.publish("me", function () {
     if (this.userId) {
