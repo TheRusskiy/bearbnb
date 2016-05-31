@@ -16,6 +16,9 @@ Meteor.publish("me", function () {
         return Meteor.users.find(this.userId);
     }
 });
+Meteor.publish("users", function () {
+    return Meteor.users.find({}, {fields: {emails: 1, firstName: 1, lastName: 1, _id: 1}});
+});
 Meteor.publish("images", function () {
     return Images.find()
 });

@@ -8,6 +8,7 @@ Template.allPostings.onCreated(function(){
 Template.postingPreview.onCreated(function(){
     this.subscribe('postings')
     this.subscribe('images')
+    this.subscribe('users')
 });
 
 Template.allPostings.helpers({
@@ -25,5 +26,9 @@ Template.postingPreview.helpers({
         } else {
             return [];
         }
+    },
+    userName: function () {
+        let user = Meteor.users.findOne(this.userId)
+        return user ? user.emails[0].address.split('@')[0] : 'unknown'
     }
 })

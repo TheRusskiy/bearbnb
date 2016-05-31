@@ -1,7 +1,7 @@
 <template name="showPosting">
     {{#if Template.subscriptionsReady}}
     {{#with posting }}
-    <h1>{{posting.title}} {{#if myPosting }}
+    <h1>{{posting.title}} by {{userName}} {{#if myPosting }}
         <a href="/postings/{{posting._id}}/edit" class="posting-preview-edit"><i class="glyphicon glyphicon-edit"></i></a>
     {{/if}}</h1>
     <p>{{posting.description}}</p>

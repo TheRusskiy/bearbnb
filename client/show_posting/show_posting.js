@@ -4,6 +4,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 Template.showPosting.onCreated(function(){
     this.subscribe('postings')
     this.subscribe('images')
+    this.subscribe('users')
 });
 
 Template.showPosting.helpers({
@@ -20,5 +21,9 @@ Template.showPosting.helpers({
         } else {
             return [];
         }
+    },
+    userName: function () {
+        let user = Meteor.users.findOne(this.userId)
+        return user ? user.emails[0].address.split('@')[0] : 'unknown'
     }
 })
